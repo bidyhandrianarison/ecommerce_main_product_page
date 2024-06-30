@@ -217,8 +217,8 @@ button{
     width: 40%;
     left: 30%;
     right: 30%;
-    top: 15%;
-    display: none;
+    margin-top: 10%;
+   /* display: none;*/
 }
 .imageActive{
     position: relative;
@@ -249,4 +249,21 @@ button{
 #next{
     right: 0;
     top: 50%;
+}
+#quit{
+    position: absolute;
+    border: none;
+    padding: 2%;
+    top: -20%;
+    right: 0;
+    background: none;
+}
+
+.darkTheme{
+
+    background-color: rgba(0, 0, 0, 0.521);
+    filter: brightness(50%);
+    position: fixed;
+    top: 0;
+    right: 0;
 }

@@ -3,6 +3,7 @@ let image=document.querySelector('#otherImage').querySelectorAll('img')
 let monPanier= document.querySelector(".cartContent")
 let panierContainer=document.querySelector('.forProduct')
 console.log(image)
+let index=0
 mainImage.src=image[0].src
 console.log(mainImage)
 resetCart("Your cart is empty");
@@ -11,6 +12,7 @@ for(let i=0;i<image.length;i++)
 {
     image[i].addEventListener('click',()=>{
         mainImage.src=image[i].src
+        index=i
         image[i].classList.toggle("selectedImage")
     })
 }
@@ -85,7 +87,7 @@ document.querySelector('.cartContent button').addEventListener('click',()=>{
 })
 let page=document.querySelector('.container')
 let divDiapo=document.createElement('div');
-divDiapo.className="diapo"
+divDiapo.classList="diapo hidden"
 let containerMain=document.createElement('div')
 containerMain.className="imageActive"
 let mainProduct=document.createElement('img')
@@ -99,6 +101,10 @@ let next=document.createElement('button')
 next.innerHTML=`<svg width="13" height="18" xmlns="http://www.w3.org/2000/svg"><path d="m2 1 8 8-8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd"/></svg>`
 next.id="next"
 containerMain.appendChild(next)
+let quit=document.createElement('button')
+quit.innerHTML=`<svg width="14" height="15" xmlns="http://www.w3.org/2000/svg"><path d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z" fill="black" fill-rule="evenodd"/></svg>`
+quit.id="quit"
+containerMain.appendChild(quit)
 divDiapo.appendChild(containerMain)
 let pics=document.createElement('div');
 pics.className="allImages";
@@ -109,3 +115,34 @@ for(let i=0;i<image.length;i++){
 }
 divDiapo.appendChild(pics);
 page.appendChild(divDiapo);
+console.log(index)
+next.addEventListener('click',()=>{
+    if(index=== image.length - 1){
+        index=0;
+    }
+    else{
+        index++
+    }
+    mainProduct.src=image[index].src
+    
+})
+prev.addEventListener('click',()=>{
+    if(index===0){
+        index = image.length - 1;
+    }
+    else{
+        index--
+    }
+    mainProduct.src= image[index].src
+    
+})
+mainImage.addEventListener('click',()=>{
+    divDiapo.classList.remove('hidden')
+    document.querySelector('.back').classList.toggle('darkTheme')
+    
+
+})
+quit.addEventListener('click',()=>{
+    divDiapo.classList.add('hidden')
+    document.querySelector('.back').classList.toggle('darkTheme')
+})
